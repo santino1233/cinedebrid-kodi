@@ -1,0 +1,73 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: CineDebrid\n"
+"Language: en_GB\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "#30100"
+msgid "Accounts"
+msgstr ""
+
+msgctxt "#30101"
+msgid "Keys"
+msgstr ""
+
+msgctxt "#30110"
+msgid "TMDB API key or read-access token (themoviedb.org/settings/api)"
+msgstr ""
+
+msgctxt "#30111"
+msgid "Real-Debrid API token (real-debrid.com/apitoken)"
+msgstr ""
+
+msgctxt "#30112"
+msgid "Check my accounts"
+msgstr ""
+
+msgctxt "#30200"
+msgid "Playback"
+msgstr ""
+
+msgctxt "#30201"
+msgid "Sources"
+msgstr ""
+
+msgctxt "#30210"
+msgid "Auto-play the best source (otherwise always ask)"
+msgstr ""
+
+msgctxt "#30211"
+msgid "Highest quality to auto-play"
+msgstr ""
+
+msgctxt "#30212"
+msgid "Largest file to auto-play (GB)"
+msgstr ""
+
+msgctxt "#30213"
+msgid "Prefer easy-to-stream encodes over huge REMUX files"
+msgstr ""
+
+msgctxt "#30214"
+msgid "Offer sources that are not cached yet (downloads on Real-Debrid first)"
+msgstr ""
+
+msgctxt "#30215"
+msgid "Search time limit (seconds)"
+msgstr ""
+
+msgctxt "#30216"
+msgid "Also search season packs for TV episodes"
+msgstr ""
+
+msgctxt "#30221"
+msgid "4K"
+msgstr ""
+
+msgctxt "#30222"
+msgid "1080p"
+msgstr ""
+
+msgctxt "#30223"
+msgid "720p"
+msgstr ""

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<settings version="1">
+	<section id="plugin.video.cinedebrid">
+		<category id="accounts" label="30100">
+			<group id="1" label="30101">
+				<setting id="tmdb_key" type="string" label="30110" help="">
+					<level>0</level>
+					<default></default>
+					<control type="edit" format="string"><heading>30110</heading></control>
+				</setting>
+				<setting id="rd_token" type="string" label="30111" help="">
+					<level>0</level>
+					<default></default>
+					<control type="edit" format="string"><heading>30111</heading></control>
+				</setting>
+				<setting id="rd_check" type="action" label="30112" help="">
+					<level>0</level>
+					<data>RunPlugin(plugin://plugin.video.cinedebrid/?action=check_accounts)</data>
+					<control type="button" format="action"><close>false</close></control>
+				</setting>
+			</group>
+		</category>
+		<category id="playback" label="30200">
+			<group id="1" label="30201">
+				<setting id="autoplay" type="boolean" label="30210" help="">
+					<level>0</level>
+					<default>true</default>
+					<control type="toggle"/>
+				</setting>
+				<setting id="max_res" type="integer" label="30211" help="">
+					<level>0</level>
+					<default>1080</default>
+					<constraints>
+						<options>
+							<option label="30221">2160</option>
+							<option label="30222">1080</option>
+							<option label="30223">720</option>
+						</options>
+					</constraints>
+					<control type="list" format="string"><heading>30211</heading></control>
+				</setting>
+				<setting id="max_size" type="integer" label="30212" help="">
+					<level>0</level>
+					<default>20</default>
+					<constraints><minimum>1</minimum><step>1</step><maximum>100</maximum></constraints>
+					<control type="slider" format="integer"><popup>false</popup></control>
+				</setting>
+				<setting id="prefer_streamable" type="boolean" label="30213" help="">
+					<level>0</level>
+					<default>true</default>
+					<control type="toggle"/>
+				</setting>
+				<setting id="allow_uncached" type="boolean" label="30214" help="">
+					<level>0</level>
+					<default>true</default>
+					<control type="toggle"/>
+				</setting>
+				<setting id="scrape_timeout" type="integer" label="30215" help="">
+					<level>0</level>
+					<default>20</default>
+					<constraints><minimum>8</minimum><step>2</step><maximum>60</maximum></constraints>
+					<control type="slider" format="integer"><popup>false</popup></control>
+				</setting>
+				<setting id="packs" type="boolean" label="30216" help="">
+					<level>0</level>
+					<default>true</default>
+					<control type="toggle"/>
+				</setting>
+			</group>
+		</category>
+	</section>
+</settings>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addons>
+<addon id="plugin.video.cinedebrid" name="CineDebrid" version="1.0.0" provider-name="CineDebrid">
+	<requires>
+		<import addon="xbmc.python" version="3.0.0"/>
+		<import addon="script.module.requests"/>
+		<import addon="script.module.cocoscrapers"/>
+	</requires>
+	<extension point="xbmc.python.pluginsource" library="default.py">
+		<provides>video</provides>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<reuselanguageinvoker>false</reuselanguageinvoker>
+		<summary lang="en_GB">Netflix-style browsing with Real-Debrid streaming</summary>
+		<description lang="en_GB">Browse movies and TV shows (TMDB), find sources with your installed CocoScrapers, and stream instantly through Real-Debrid. Continue Watching, My List, quality and size limits, one-click best-source play.</description>
+		<disclaimer lang="en_GB">This add-on hosts no content. It only searches with the scrapers you installed and plays through your own Real-Debrid account. Use sources you have the right to access.</disclaimer>
+		<platform>all</platform>
+		<license>GPL-3.0-or-later</license>
+		<assets>
+			<icon>icon.png</icon>
+			<fanart>fanart.jpg</fanart>
+		</assets>
+	</extension>
+</addon>
+<addon id="repository.cinedebrid" name="CineDebrid Repository" version="1.0.0" provider-name="CineDebrid">
+	<extension point="xbmc.addon.repository" name="CineDebrid Repository">
+		<dir>
+			<info compressed="false">https://raw.githubusercontent.com/santino1233/cinedebrid-kodi/main/addons.xml</info>
+			<checksum>https://raw.githubusercontent.com/santino1233/cinedebrid-kodi/main/addons.xml.md5</checksum>
+			<datadir zip="true">https://raw.githubusercontent.com/santino1233/cinedebrid-kodi/main/zips/</datadir>
+		</dir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en_GB">CineDebrid add-on repository</summary>
+		<description lang="en_GB">Installs and updates the CineDebrid video add-on.</description>
+		<platform>all</platform>
+		<assets>
+			<icon>icon.png</icon>
+			<fanart>fanart.jpg</fanart>
+		</assets>
+	</extension>
+</addon>
+</addons>

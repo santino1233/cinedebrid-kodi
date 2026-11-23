@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="plugin.video.cinedebrid" name="CineDebrid" version="1.0.0" provider-name="CineDebrid">
+	<requires>
+		<import addon="xbmc.python" version="3.0.0"/>
+		<import addon="script.module.requests"/>
+		<import addon="script.module.cocoscrapers"/>
+	</requires>
+	<extension point="xbmc.python.pluginsource" library="default.py">
+		<provides>video</provides>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<reuselanguageinvoker>false</reuselanguageinvoker>
+		<summary lang="en_GB">Netflix-style browsing with Real-Debrid streaming</summary>
+		<description lang="en_GB">Browse movies and TV shows (TMDB), find sources with your installed CocoScrapers, and stream instantly through Real-Debrid. Continue Watching, My List, quality and size limits, one-click best-source play.</description>
+		<disclaimer lang="en_GB">This add-on hosts no content. It only searches with the scrapers you installed and plays through your own Real-Debrid account. Use sources you have the right to access.</disclaimer>
+		<platform>all</platform>
+		<license>GPL-3.0-or-later</license>
+		<assets>
+			<icon>icon.png</icon>
+			<fanart>fanart.jpg</fanart>
+		</assets>
+	</extension>
+</addon>
