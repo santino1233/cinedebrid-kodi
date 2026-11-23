@@ -24,7 +24,18 @@ def addon_info(folder):
     return root.attrib['id'], root.attrib['version']
 
 
-def build_zip(folder):
+def read_keys(env_path):
+    keys = {}
+    with open(env_path, encoding='utf-8') as f:
+        for line in f:
+            if '=' in line:
+                k, v = line.strip().split('=', 1)
+                keys[k] = v
+    return keys
+
+
+def build_zip(folder, embed=None):
+    """embed: optional {'TMDB_KEY':..., 'RD_TOKEN':...}; written into the zip of the video add-on only."""
     aid, ver = addon_info(folder)
     out_dir = os.path.join(ROOT, 'zips', aid)
     os.makedirs(out_dir, exist_ok=True)
@@ -39,7 +50,12 @@ def build_zip(folder):
                 if os.path.splitext(f)[1] in SKIP_EXT:
                     continue
                 full = os.path.join(dirpath, f)
+                if f == 'embedded.py':
+                    continue
                 z.write(full, os.path.join(aid, os.path.relpath(full, os.path.join(ROOT, folder))).replace(os.sep, '/'))
+        if embed and aid == 'plugin.video.cinedebrid':
+            z.writestr('%s/resources/lib/embedded.py' % aid,
+                       'TMDB_KEY = %r\nRD_TOKEN = %r\n' % (embed['TMDB_KEY'], embed['RD_TOKEN']))
     # Kodi shows icon/fanart of repository add-ons from the zips folder too
     for asset in ('icon.png', 'fanart.jpg'):
         src = os.path.join(ROOT, folder, asset)
@@ -85,9 +101,13 @@ def main():
     if '--personal' in sys.argv:
         i = sys.argv.index('--personal')
         return build_personal(sys.argv[i + 1] if len(sys.argv) > i + 1 else os.path.join(ROOT, '.env'))
+    embed = None
+    if '--embed-keys' in sys.argv:  # puts the keys INSIDE the public zip: anyone who downloads it can read them
+        i = sys.argv.index('--embed-keys')
+        embed = read_keys(sys.argv[i + 1])
     blocks = []
     for folder in ADDONS:
-        z = build_zip(folder)
+        z = build_zip(folder, embed)
         print('built', os.path.relpath(z, ROOT))
         with open(os.path.join(ROOT, folder, 'addon.xml'), encoding='utf-8') as f:
             xml = f.read()
