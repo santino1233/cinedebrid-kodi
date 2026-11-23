@@ -76,13 +76,20 @@ def save(name, data):
     os.replace(tmp, _path(name))
 
 
-def cached(name, ttl, producer):
-    """File cache with a time to live: producer() runs only when the cached value is older than ttl seconds."""
+def cached(name, ttl, producer, stale_ttl=0):
+    """File cache with a time to live: producer() runs only when the cached value is older than ttl seconds.
+    If producer() fails and an older copy (up to stale_ttl seconds) exists, that copy is returned instead."""
     store = load('cache.json', {})
     hit = store.get(name)
     if hit and time.time() - hit['at'] < ttl:
         return hit['v']
-    value = producer()
+    try:
+        value = producer()
+    except Exception:
+        if hit and stale_ttl and time.time() - hit['at'] < stale_ttl:
+            log('using stale cache for %s' % name)
+            return hit['v']
+        raise
     store[name] = {'at': time.time(), 'v': value}
     if len(store) > 300:  # drop the oldest entries
         for k in sorted(store, key=lambda k: store[k]['at'])[:100]:

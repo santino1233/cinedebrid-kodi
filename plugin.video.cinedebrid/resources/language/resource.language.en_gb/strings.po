@@ -24,6 +24,42 @@ msgctxt "#30112"
 msgid "Check my accounts"
 msgstr ""
 
+msgctxt "#30113"
+msgid "TMDB host override (advanced; leave empty)"
+msgstr ""
+
+msgctxt "#30300"
+msgid "Appearance"
+msgstr ""
+
+msgctxt "#30301"
+msgid "Browsing"
+msgstr ""
+
+msgctxt "#30310"
+msgid "Default view for movies and shows"
+msgstr ""
+
+msgctxt "#30311"
+msgid "Posters"
+msgstr ""
+
+msgctxt "#30312"
+msgid "Poster wall"
+msgstr ""
+
+msgctxt "#30313"
+msgid "List"
+msgstr ""
+
+msgctxt "#30314"
+msgid "Leave to my skin"
+msgstr ""
+
+msgctxt "#30315"
+msgid "Custom view ID (only if your skin is not Estuary; 0 = off)"
+msgstr ""
+
 msgctxt "#30200"
 msgid "Playback"
 msgstr ""

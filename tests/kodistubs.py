@@ -16,6 +16,7 @@ def install():
     xbmc.log = lambda m, level=1: None
     xbmc.sleep = lambda ms: None
     xbmc.executebuiltin = lambda c: EVENTS.append(('builtin', c))
+    xbmc.getSkinDir = lambda: 'skin.estuary'
 
     class Monitor:
         def abortRequested(self): return False
@@ -56,7 +57,8 @@ def install():
         answers = []
         def notification(self, *a, **k): EVENTS.append(('notify', a[1]))
         def ok(self, h, msg): EVENTS.append(('ok', msg))
-        def input(self, *a, **k): return 'test query'
+        inputs = []
+        def input(self, *a, **k): return Dialog.inputs.pop(0) if Dialog.inputs else 'test query'
         def select(self, title, labels, **k):
             EVENTS.append(('select', title, len(labels)))
             return Dialog.answers.pop(0) if Dialog.answers else -1
@@ -68,6 +70,7 @@ def install():
         def iscanceled(self): return False
         def close(self): pass
     xg.ListItem, xg.Dialog, xg.DialogProgress = ListItem, Dialog, DialogProgress
+    xg.INPUT_NUMERIC = 1
 
     xp = types.ModuleType('xbmcplugin')
     xp.addDirectoryItem = lambda h, u, li, f: EVENTS.append(('item', li.label, f, u))

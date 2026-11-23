@@ -23,12 +23,18 @@ Open the add-on, then **Settings**:
 Providers are the ones you enabled in CocoScrapers' own settings.
 
 ## Using it
-- Home: Continue Watching, Movies, TV Shows, My List, Search.
-- Movies/TV: Trending, Popular, Top Rated, Now Playing / On The Air, Genres, By Decade.
+- **Home**: Continue Watching, Movies, TV Shows, Search, My List, Tools & Settings.
+- **Movies / TV**: Trending (week/day), Popular, Top Rated, Now Playing / Upcoming (movies) or On The Air / Airing Today (TV),
+  New Releases, Genres, Years & Decades, Themes & Collections, Studios (movies) / Networks & Streaming (TV),
+  Critically Acclaimed, Hidden Gems, Box Office Hits, Mini-Series, Anime, Kids, Documentaries, Reality.
+- **Years & Decades**: year ranges (this year, last 3/5/10 years, 90s, classics...), decades, every single year, or a custom range.
+  Every genre, decade, studio, network or theme opens a second menu: Popular, Top Rated, Newest First, Hidden Gems.
+- **Posters are the default view** (Estuary skin; pick Poster wall / List / leave to skin in Settings > Appearance).
+- **Search**: everything, movies, TV, or people (actors and directors open their filmography). Recent searches are kept.
+- Context menu on any title: Add to My List, More like this, Choose source.
 - Press a movie or episode: it searches, ranks, and plays the best source that is already cached on Real-Debrid
   (highest quality allowed by your settings, trusted RARBG/YIFY releases first, huge REMUXes last).
-- **Context menu (C / long-press) > Choose source...** shows every release with size, seeders and tags.
-  Uncached releases download on Real-Debrid first, with a progress dialog.
+- **Choose source...** shows every release with size, seeders and tags. Uncached releases download on Real-Debrid first.
 - Resume prompt, Continue Watching with "up next", watched marks, My List.
 
 ## Settings
@@ -46,3 +52,4 @@ python tests/test_logic.py        # ranking, merging, file picking
 python tests/test_flow.py         # menus, auto-play, fallbacks, Continue Watching with a fake Kodi
 python tools/build_repo.py        # rebuild zips/, addons.xml, addons.xml.md5, repository.cinedebrid.zip
 ```
+

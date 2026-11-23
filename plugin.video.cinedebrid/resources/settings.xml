@@ -13,10 +13,38 @@
 					<default></default>
 					<control type="edit" format="string"><heading>30111</heading></control>
 				</setting>
+				<setting id="tmdb_host" type="string" label="30113" help="">
+					<level>2</level>
+					<default></default>
+					<control type="edit" format="string"><heading>30113</heading></control>
+				</setting>
 				<setting id="rd_check" type="action" label="30112" help="">
 					<level>0</level>
 					<data>RunPlugin(plugin://plugin.video.cinedebrid/?action=check_accounts)</data>
 					<control type="button" format="action"><close>false</close></control>
+				</setting>
+			</group>
+		</category>
+		<category id="appearance" label="30300">
+			<group id="1" label="30301">
+				<setting id="view_mode" type="string" label="30310" help="">
+					<level>0</level>
+					<default>poster</default>
+					<constraints>
+						<options>
+							<option label="30311">poster</option>
+							<option label="30312">wall</option>
+							<option label="30313">list</option>
+							<option label="30314">skin</option>
+						</options>
+					</constraints>
+					<control type="list" format="string"><heading>30310</heading></control>
+				</setting>
+				<setting id="view_custom" type="integer" label="30315" help="">
+					<level>1</level>
+					<default>0</default>
+					<constraints><minimum>0</minimum><step>1</step><maximum>9999</maximum></constraints>
+					<control type="edit" format="integer"><heading>30315</heading></control>
 				</setting>
 			</group>
 		</category>

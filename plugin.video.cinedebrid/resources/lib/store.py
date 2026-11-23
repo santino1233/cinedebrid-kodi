@@ -83,6 +83,21 @@ def is_watched(k):
     return k in common.load('watched.json', [])
 
 
+# ---- Search history
+def search_history():
+    return common.load('searches.json', [])
+
+
+def add_search(scope, q):
+    items = [h for h in search_history() if not (h['scope'] == scope and h['q'].lower() == q.lower())]
+    items.insert(0, {'scope': scope, 'q': q})
+    common.save('searches.json', items[:20])
+
+
+def clear_search():
+    common.save('searches.json', [])
+
+
 # ---- My List
 def mylist():
     return common.load(LIST, [])
