@@ -42,7 +42,7 @@ Auto-play on/off, highest quality to auto-play (4K/1080p/720p), largest file to 
 REMUX, offer uncached sources, search time limit, include season packs for episodes.
 
 ## Notes
-- No keys are stored in this repository; they live in your Kodi profile.
+- WARNING: the published package currently carries the owner's own TMDB and Real-Debrid keys (embedded.py inside the zip). Do not rely on them; reset them when done. Build without `--embed-keys` for a keyless package.
 - Real-Debrid refuses some releases as "infringing"; those are skipped automatically and remembered for two hours.
 - Use sources you have the right to access.
 
@@ -52,4 +52,5 @@ python tests/test_logic.py        # ranking, merging, file picking
 python tests/test_flow.py         # menus, auto-play, fallbacks, Continue Watching with a fake Kodi
 python tools/build_repo.py        # rebuild zips/, addons.xml, addons.xml.md5, repository.cinedebrid.zip
 ```
+
 
