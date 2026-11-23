@@ -49,7 +49,42 @@ def build_zip(folder):
     return out
 
 
+def build_personal(env_path):
+    """A private zip with the owner's keys inside (resources/lib/embedded.py). Never committed: personal/ is gitignored,
+    and the keys are added to the zip only, never to the working tree."""
+    keys = {}
+    with open(env_path, encoding='utf-8') as f:
+        for line in f:
+            if '=' in line:
+                k, v = line.strip().split('=', 1)
+                keys[k] = v
+    if not keys.get('TMDB_KEY') or not keys.get('RD_TOKEN'):
+        sys.exit('TMDB_KEY and RD_TOKEN must both be in ' + env_path)
+    aid, ver = addon_info('plugin.video.cinedebrid')
+    out_dir = os.path.join(ROOT, 'personal')
+    os.makedirs(out_dir, exist_ok=True)
+    out = os.path.join(out_dir, '%s-%s-personal.zip' % (aid, ver))
+    base = os.path.join(ROOT, 'plugin.video.cinedebrid')
+    with zipfile.ZipFile(out, 'w', zipfile.ZIP_DEFLATED) as z:
+        for dirpath, dirs, files in os.walk(base):
+            dirs[:] = [d for d in dirs if d not in SKIP_DIRS]
+            for fn in sorted(files):
+                if os.path.splitext(fn)[1] in SKIP_EXT or fn == 'embedded.py':
+                    continue
+                full = os.path.join(dirpath, fn)
+                z.write(full, os.path.join(aid, os.path.relpath(full, base)).replace(os.sep, '/'))
+        z.writestr('%s/resources/lib/embedded.py' % aid,
+                   '# personal build: private keys, do not share this zip\nTMDB_KEY = %r\nRD_TOKEN = %r\n' % (keys['TMDB_KEY'], keys['RD_TOKEN']))
+    with open(os.path.join(out_dir, 'index.html'), 'w', encoding='utf-8') as f:
+        f.write('<html><head><title>Index of /</title></head><body><h1>Index of /</h1><pre>\n<a href="%s">%s</a>\n</pre></body></html>\n'
+                % (os.path.basename(out), os.path.basename(out)))
+    print('built private', os.path.relpath(out, ROOT))
+
+
 def main():
+    if '--personal' in sys.argv:
+        i = sys.argv.index('--personal')
+        return build_personal(sys.argv[i + 1] if len(sys.argv) > i + 1 else os.path.join(ROOT, '.env'))
     blocks = []
     for folder in ADDONS:
         z = build_zip(folder)

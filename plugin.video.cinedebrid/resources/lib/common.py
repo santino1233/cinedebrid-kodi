@@ -17,6 +17,21 @@ ICON = ADDON.getAddonInfo('icon')
 os.makedirs(PROFILE, exist_ok=True)
 
 
+def _seed_embedded_keys():
+    """A personal build ships resources/lib/embedded.py with the owner's keys. Copy them into the add-on's
+    settings once, so they survive later updates from the repository (whose package carries no keys)."""
+    try:
+        from . import embedded
+    except ImportError:
+        return
+    for setting_id, value in (('tmdb_key', getattr(embedded, 'TMDB_KEY', '')), ('rd_token', getattr(embedded, 'RD_TOKEN', ''))):
+        if value and not ADDON.getSetting(setting_id):
+            ADDON.setSetting(setting_id, value)
+
+
+_seed_embedded_keys()
+
+
 def setting(key, default=''):
     v = ADDON.getSetting(key)
     return v if v != '' else default
